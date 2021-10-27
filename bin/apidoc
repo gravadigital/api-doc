@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+var program = require('commander')
+  , pkg = require('../package')
+  , util = require('util')
+  , apidoc = require('..');
+
+program
+  .description('Transform commented documentation into markdown formatted documentation')
+  .version(pkg.version)
+  .option('-f, --files <path>', 'Files');
+
+program.parse();
+
+const result = apidoc({
+  filesPath: program.opts().files
+});
+
+console.log(result[0]);
+console.log(result[1]);
+console.log(result[2]);
