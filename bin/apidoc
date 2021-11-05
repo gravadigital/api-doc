@@ -15,6 +15,4 @@ const result = apidoc({
   filesPath: program.opts().files
 });
 
-console.log(result[0]);
-console.log(result[1]);
-console.log(result[2]);
+console.log(JSON.stringify(result, null, 2));
