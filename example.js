@@ -55,13 +55,26 @@ router.post('/resend', validateBody, (req, res) => {
  * @route {GET} /api/testing
  * @queryparam {string} [name] User name
  * @queryparam (optional) {number} [age] User age
+ * @response {200} Caso correcto
+ * @responsebody {string} [name1] User name 1
+ * @responsebody {string} [name2] User name 2
+ * @responsebody {string} [name3] User name 3
+ * @responsebody {string} [name4] User name 4
+ * @responsebody {string} [name5] User name 5
+ * @response {400} Falta el nombre
+ * @responsebody {string} [code] Error code
+ * @responsebody {string} [message] Error message
  */
 
 
 /**
  * @name Testing declaration 3
  * @description Other declaration testing
- * @route /api/testingbad
+ * @route {PUT} /api/testingbad
  * @queryparam User name
  */
 module.exports = router;
+
+/*
+hola
+ */
