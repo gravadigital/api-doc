@@ -8,5 +8,5 @@ npm install
 ## Correr local:
 Help:
 ```
-node bin/apidoc --help
+./bin/apidoc --help
 ```
