@@ -1,1 +1,1 @@
-module.exports = require('./lib/apidoc');
+module.exports = require('./lib/api-doc');

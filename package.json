@@ -1,11 +1,21 @@
 {
-  "name": "api-doc",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@grava.io/api-doc",
+  "version": "0.0.1",
+  "description": "Transform commented documentation into markdown formatted documentation",
+  "homepage": "https://github.com/gravadigital/api-doc#readme",
+  "author": "Grava <info@grava.digital>",
   "main": "index.js",
+  "keywords": [
+    "grava",
+    "documentation",
+    "markdown"
+  ],
   "scripts": {},
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gravadigital/api-doc.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "commander": "^8.3.0"
   }
