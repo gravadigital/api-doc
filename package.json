@@ -1,6 +1,6 @@
 {
   "name": "@grava.io/api-doc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Transform commented documentation into markdown formatted documentation",
   "homepage": "https://github.com/gravadigital/api-doc#readme",
   "author": "Grava <info@grava.digital>",
@@ -20,6 +20,6 @@
     "commander": "^8.3.0"
   },
   "bin": {
-    "api-doc": "./bin/api-doc.js"
+    "api-doc": "./bin/api-doc"
   }
 }
