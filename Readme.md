@@ -8,11 +8,11 @@ npm install -g @grava.io/api-doc
 ## Run
 Help:
 ```
-apidoc --help
+api-doc --help
 ```
 Result:
 ```
-Usage: apidoc [options]
+Usage: api-doc [options]
 
 Transform commented documentation into markdown formatted documentation
 
@@ -29,7 +29,7 @@ Options:
 
 Example:
 ```
-/*
+/**
  * @name Get users by role
  * @description Get all users filtering sending role as parameter
  * @route {GET} /api/users/byrole

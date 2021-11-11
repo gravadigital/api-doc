@@ -1,6 +1,6 @@
 {
   "name": "@grava.io/api-doc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Transform commented documentation into markdown formatted documentation",
   "homepage": "https://github.com/gravadigital/api-doc#readme",
   "author": "Grava <info@grava.digital>",
