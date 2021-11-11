@@ -32,7 +32,8 @@ Example:
 /**
  * @name Get users by role
  * @description Get all users filtering sending role as parameter
- * @route {GET} /api/users/byrole
+ * @route {GET} /api/users/:organization/byrole
+ * @urlparam {string} [organization] Organization to filter
  * @queryparam {string} [role] Role to filter
  * @queryparam (optional) {number} [limit] Limit results quantity by this number
  * @response {200} OK
@@ -49,13 +50,14 @@ Result:
 ```
 ## Routes
 
-### GET /api/users/byrole - Get users by role
+### GET /api/users/:organization/byrole - Get users by role
 Get all users filtering sending role as parameter
 
 ##### Parameters
 
 | Name | Location | Data type | Required | Description |
 | ---- | -------- | --------- | -------- | ----------- |
+| organization | url | string | True | Organization to filter |
 | role | query | string | True | Role to filter |
 | limit | query | number | False | Limit results quantity by this number |
 
