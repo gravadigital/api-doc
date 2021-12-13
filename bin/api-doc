@@ -7,7 +7,7 @@ program
   .description('Transform commented documentation into markdown formatted documentation')
   .version(pkg.version)
   .requiredOption('-f, --files <path>', 'File or folder to analize')
-  .requiredOption('-o, --output <path>', 'Output path to save markdown documentation');
+  .option('-o, --output <path>', 'Output path to save markdown documentation. If is not defined, it will print on console');
 
 program.parse();
 
