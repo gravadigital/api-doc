@@ -11,7 +11,7 @@ program
 
 program.parse();
 
-const result = apidoc({
+apidoc({
   filesPath: program.opts().files,
   destintation: program.opts().output
 });

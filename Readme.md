@@ -1,5 +1,8 @@
 # \@grava.io/api-doc
 
+\@grava.io/api-doc is a module that allows you transform commented documentation into markdown formatted documentation.
+Make comments in the code and export an markdown documentation!
+
 ## Install from npm
 ```
 npm install -g @grava.io/api-doc
@@ -18,123 +21,136 @@ Transform commented documentation into markdown formatted documentation
 
 Options:
   -V, --version        output the version number
-  -f, --files <path>   File or folder to analize
+  -f, --files <path>   Folder to analize
   -o, --output <path>  Output path to save markdown documentation. If is not defined, it will print on console
   -h, --help           display help for command
 ```
 
-## Comments format
+## Route definitions format
 
-**TODO**
+The definitions must be inside a "comment" with this format:
+```
+/*
 
-### GET example
+*/
+```
 
-Example:
+To make it preattier we use this convention:
 ```
 /**
- * @name Get users by role
- * @description Get all users filtering sending role as parameter
- * @route {GET} /api/users/:organization/byrole
- * @urlparam {string} [organization] Organization to filter
- * @queryparam {string} [role] Role to filter
- * @queryparam (optional) {number} [limit] Limit results quantity by this number
- * @response {200} OK
- * @responsebody {string} [_id] Identifier
- * @responsebody {string} [name] Name
- * @responsebody {number} [age] Age
- * @responsebody {string} [role] Role
- * @response {400} Missing role parameter
- * @responsebody {string} [code] Error code
- * @responsebody {string} [message] Error message
+ * definition_line
+ * definition_line
+ * definition_line
  */
 ```
-Result:
+
+Inside this structure you can use different type of definitions:
+
+### Name
+In this definition you must define a title for your route.
+
+Format:
 ```
-## GET /api/users/:organization/byrole - Get users by role
-Get all users filtering sending role as parameter
-
-#### Parameters
-
-| Name | Location | Data type | Required | Description |
-| ---- | -------- | --------- | -------- | ----------- |
-| organization | url | string | True | Organization to filter |
-| role | query | string | True | Role to filter |
-| limit | query | number | False | Limit results quantity by this number |
-
-#### Responses
-
-##### [200] OK
-
-| Name | Data type | Description |
-| ---- | --------- | ----------- |
-| _id | string | Identifier |
-| name | string | Name |
-| age | number | Age |
-| role | string | Role |
-
-##### [400] Missing role parameter
-
-| Name | Data type | Description |
-| ---- | --------- | ----------- |
-| code | string | Error code |
-| message | string | Error message |
+@name ROUTE_NAME
+```
+For example:
+```
+@name List user posts
 ```
 
-### POST example
+### Description
+In this definition you must define a more specific description for your route.
 
-Example:
+Format:
 ```
-/**
- * @name Register new user
- * @description Register a new user. Should be admin
- * @route {POST} /api/users
- * @bodyparam {string} [name] User name
- * @bodyparam {string} [email] User email
- * @bodyparam {number} [age] User age
- * @bodyparam (optional) {string} [role] User role. Posibles values: "user", "admin". Default: "user"
- * @headerparam {string} [Authorization] User token. Must have admin rol
- * @response {201} OK
- * @responsebody {string} [_id] Identifier
- * @responsebody {string} [name] Name
- * @responsebody {string} [email] Email
- * @responsebody {number} [age] Age
- * @responsebody {string} [role] Role
- * @response {400} Missing data or invalid email
- * @responsebody {string} [code] Error code
- * @responsebody {string} [message] Error message
- */
+@description ROUTE_DESCRIPTION
 ```
-Result:
+For example:
 ```
-## POST /api/users - Register new user
-Register a new user. Should be admin
+@name In this route you can get all post of an specific user. You must send a userId and you can filter post by some fields.
+```
+
+### Route
+In this definition you must define a the method and path for your route.
+
+Format:
+```
+@route {ROUTE_METHOD} ROUTE_COMPLETE_PATH
+```
+For example:
+```
+@route {GET} /users/:userId/posts
+```
 
 ### Parameters
+With this definitions you can specify the parameters of the route (both required and optional).
+There are 4 types of parameters, but all have the same format:
+```
+@PARAMETER_TYPE (optional) {PARAMETER_FIELD_TYPE} [PARAMETER_FIELD_NAME] PARAMETER_FIELD_DESCRIPTION
+```
+with this options:
+- `PARAMETER_TYPE`: could be "headerparam", "urlparam", "queryparam", "bodyparam"
+- `(optional)`: it says that the parameter is optional. If the parameter is requered don't include this
+- `PARAMETER_FIELD_TYPE`: the data type of the field. For example: "string", "number", "date", "array<string>", "object"
+- `PARAMETER_FIELD_NAME`: the name of the field
+- `PARAMETER_FIELD_DESCRIPTION`: a description of the field. Here you can explain posibles values, validations, etc
 
-| Name | Location | Data type | Required | Description |
-| ---- | -------- | --------- | -------- | ----------- |
-| Authorization | header | string | True | User token. Must have admin rol |
-| name | body | string | True | User name |
-| email | body | string | True | User email |
-| age | body | number | True | User age |
-| role | body | string | False | User role. Posibles values: "user", "admin". Default: "user" |
+Examples of each parameter type:
+
+#### headerparam
+```
+@headerparam {string} [Authorization] JWT token
+```
+
+#### urlparam
+```
+@urlparam {string} [userId] The user identifier
+```
+
+#### queryparam
+```
+@queryparam (optional) {date} [dateFrom] filter the results after this date
+@queryparam {string} [category] filter the post category. Posibles values: "sports", "memes", "music"
+```
+
+#### bodyparam
+```
+@bodyparam {number} [age] User age
+@bodyparam (optional) {string} [address] User full address with street, number and postal code
+```
 
 ### Responses
+With this definitions you can specify the posible responses of the route (with status).
+Inside this definition you can spicify the body response.
 
-##### [201] OK
-
-| Name | Data type | Description |
-| ---- | --------- | ----------- |
-| _id | string | Identifier |
-| name | string | Name |
-| email | string | Email |
-| age | number | Age |
-| role | string | Role |
-
-##### [400] Missing data or invalid email
-
-| Name | Data type | Description |
-| ---- | --------- | ----------- |
-| code | string | Error code |
-| message | string | Error message |
+Format:
 ```
+@response {RESPONSE_STATUS} RESPONSE_TITLE
+```
+For example:
+```
+@response {201} User information was succesfully
+```
+or
+```
+@response {400} Invalid field value
+```
+
+#### Response body
+After a "response" line you can add "responsebody" definitions. **IMPORTANT: the responsebody definitions must be following the response definition**.
+
+Format:
+```
+@responsebody {RESPONSE_FIELD_TYPE} [RESPONSE_FIELD_NAME] RESPONSE_FIELD_DESCRIPTION
+```
+
+For example:
+```
+@responsebody {number} [age] User age
+@responsebody {string} [address] User address
+```
+
+## Examples
+
+You can find some examples in the ["examples" folder](./examples/Readme.md)
+
