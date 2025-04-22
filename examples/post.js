@@ -1,6 +1,10 @@
 /**
  * @name Save new user event
  * @description Save a new event related to user
+ * @description
+ * @description Another line of description
+ * @description - first item
+ * @description - second item
  * @route {POST} /api/users/:userId/events
  * @urlparam {string} [userId] User unique identifier
  * @headerparam {string} [Authorization] JWT token

@@ -53,7 +53,7 @@ Format:
 ```
 @name ROUTE_NAME
 ```
-For example:
+In example:
 ```
 @name List user posts
 ```
@@ -65,9 +65,17 @@ Format:
 ```
 @description ROUTE_DESCRIPTION
 ```
-For example:
+In example:
 ```
 @name In this route you can get all post of an specific user. You must send a userId and you can filter post by some fields.
+```
+
+You can use multiple lines in description. In example:
+```
+@description First line in description
+@description Second line
+@description - an item
+@description - another item
 ```
 
 ### Route
@@ -77,7 +85,7 @@ Format:
 ```
 @route {ROUTE_METHOD} ROUTE_COMPLETE_PATH
 ```
-For example:
+In example:
 ```
 @route {GET} /users/:userId/posts
 ```
@@ -91,7 +99,7 @@ There are 4 types of parameters, but all have the same format:
 with this options:
 - `PARAMETER_TYPE`: could be "headerparam", "urlparam", "queryparam", "bodyparam"
 - `(optional)`: it says that the parameter is optional. If the parameter is requered don't include this
-- `PARAMETER_FIELD_TYPE`: the data type of the field. For example: "string", "number", "date", "array<string>", "object"
+- `PARAMETER_FIELD_TYPE`: the data type of the field. In example: "string", "number", "date", "array<string>", "object"
 - `PARAMETER_FIELD_NAME`: the name of the field
 - `PARAMETER_FIELD_DESCRIPTION`: a description of the field. Here you can explain posibles values, validations, etc
 
@@ -127,7 +135,7 @@ Format:
 ```
 @response {RESPONSE_STATUS} RESPONSE_TITLE
 ```
-For example:
+In example:
 ```
 @response {201} User information was succesfully
 ```
@@ -144,13 +152,41 @@ Format:
 @responsebody {RESPONSE_FIELD_TYPE} [RESPONSE_FIELD_NAME] RESPONSE_FIELD_DESCRIPTION
 ```
 
-For example:
+In example:
 ```
 @responsebody {number} [age] User age
 @responsebody {string} [address] User address
 ```
 
 ## Examples
-
 You can find some examples in the ["examples" folder](./examples/Readme.md)
 
+
+## Development
+Instal dependencies
+```
+npm i
+```
+
+Run in local with
+```
+./bin/api-doc
+```
+
+In example, to run examples folder
+```
+./bin/api-doc -f ./examples/
+```
+
+### Release
+1. Change version in package.json.
+2. Merge to main and push to github
+3. Tag the commit (use the correct version)
+   ```
+   git tag -a v1.2.0
+   ```
+4. Publish to npm
+   ```
+   npm publish
+   ```
+5. Push tag to github
